@@ -193,7 +193,7 @@ while True:
         print("--------------------")
         print("Made by RASBI")
         print("최종 업데이트: 2023-12-22")
-        print("V 1.0.0")
+        print("V 1.0.1")
         print("\n")
         print("VOLTE 강좌를 제공해 주신 소니 사용자 모임 카페의 앨리자님 및 회원분들께 감사의 말씀드립니다.")
         print("--------------------")
