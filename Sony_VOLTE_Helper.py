@@ -211,7 +211,7 @@ while True:
         Clear_page()
         Make_line()
         print("Made by RASBI")
-        print("최종 업데이트: 202-01-01")
+        print("최종 업데이트: 2024-01-01")
         print("V 1.0.2")
         print("업데이트 내용: 코드 개선 및 오류 수정\n")
         print("VOLTE 강좌를 제공해 주신 소니 사용자 모임 카페의 앨리자님 및 회원분들께 감사의 말씀드립니다.")
