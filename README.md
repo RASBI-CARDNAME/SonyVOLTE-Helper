@@ -6,11 +6,18 @@
 2. FASTBOOT로 부팅
 3. FASTBOOT 탈출
 4. 부트로더 언락   
-5. EFSTOOL 포트 개방   
-6. PDC / QPST 포트 개방
-7. VOLTE 스위치 활성화
-8. ADB / FASTBOOT 명령어 직접 입력
-9. ADB kill server로 완전 종료 지원
+5. boot.img 플래싱
+6. 기기 재시작
+
+7. EFSTOOL 포트 개방 (setprop persist.usb.eng 1 명령어)
+8. PDC / QPST 포트 개방 (setprop sys.usb.config diag,serial_cdev, rmnet, adb 명령어)
+9. VOLTE 스위치 활성화 (아래 명령어)
+ㄴsetprop persist.dbg.ims_avail_ovr 1
+ㄴsetprop persist.dbg.volte_avail_ovr 1
+ㄴsetprop persist.dbg.vt_avail_ovr 1
+
+10. ADB / FASTBOOT 명령어 직접 입력
+11. ADB kill server로 완전 종료 지원
 ## 지원 기종  
 QPST 작업을 하는 엑스페리아 1 마크1 / 5마크 1 이후 기종
 </br>
