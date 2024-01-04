@@ -24,53 +24,60 @@ def Main_menu():
     print("3. Fastboot 탈출(#os로 부팅)")
     print("4. 부트로더 언락(#주의)")
     print("5. boot.img 플래시(#주의)")
-    print("6. EFSTOOL 포트 개방")
-    print("7. PDC / QPST 포트 열기")
-    print("8. VOLTE 스위치 열기")
-    print("9. ADB / FASTBOOT 사용(명령어 직접 입력)")
-    print("10. 기기 재부팅")
-    print("11. 기타")
-    print("12. 종료")
+    print("6. init_boot.img 플래시(#주의)")
+    print("7. EFSTOOL 포트 개방")
+    print("8. PDC / QPST 포트 열기")
+    print("9. VOLTE 스위치 열기")
+    print("10. ADB / FASTBOOT 사용(명령어 직접 입력)")
+    print("11. 기기 재부팅")
+    print("12. 기타")
+    print("13. 종료")
 
 def open_file_dialog():
-    Confirm_num = 0;
-    global file_path #전역 변수로 사용할 거라고 알림.
-    
-    root = tk.Tk()
-    root.withdraw()  # 기본 창 숨기기
-
-    file_path = filedialog.askopenfilename()  # 파일 선택 창 열기
-
-    if file_path:
-        Clear_page()
-        Make_line()
-        print("선택한 파일의 경로:", file_path,"\n")
-        Make_line()
-        print ("맞으면 1 입력 후 엔터, 다시 선택하려면 0 입력 후 엔터")
-        Make_line()
+    while True:
+        Confirm_num = 0;
+        global file_path #전역 변수로 사용할 거라고 알림.
         
-        Confirm_num=input()
-        #print(Confirm_num)
+        root = tk.Tk()
+        root.withdraw()  # 기본 창 숨기기
 
-        if Confirm_num == '0' :#다시 선택
+        file_path = filedialog.askopenfilename()  # 파일 선택 창 열기
+
+        if file_path:
             Clear_page()
             Make_line()
-            print("새로 열린 창에서 파일 선택을 해주세요...")
+            print("선택한 파일의 경로:", file_path,"\n")
             Make_line()
-            open_file_dialog()
+            print ("맞으면 1 입력 후 엔터, 다시 선택하려면 0 입력 후 엔터")
+            Make_line()
+            
+            Confirm_num=input()
+            #print(Confirm_num)
 
-        elif Confirm_num == '1': #확인
-            print("")
+            if Confirm_num == '0' :#다시 선택
+                Clear_page()
+                Make_line()
+                print("다시 선택해주세요.")
+                Make_line()
+                continue
 
+            elif Confirm_num == '1': #확인
+                print("")
+
+            else:
+                Clear_page()
+                Make_line()
+                print("다시 선택해주세요.")
+                Make_line()
+                continue
+            
         else:
-            print("다시 확인 해주세요")
-        
-    else:
-        Clear_page()
-        Make_line()
-        print("파일을 선택하지 않았습니다. 처음으로 돌아갑니다.")
-        Make_line()
-        print("\n")
+            Clear_page()
+            Make_line()
+            print("파일을 선택하지 않았습니다. 처음으로 돌아갑니다.")
+            Make_line()
+            print("\n")
+            break
 
 # 경고문
 print("-----Sony VOLTE Helper------")
@@ -207,8 +214,53 @@ while True:
         print("플래싱 완료. 기기를 확인해주세요.")
         Make_line()
         print("\n")
+
+    elif number == '6' : #init_boot 플래싱
+        Clear_page()
+        Make_line()
+        print("##경고##")
+        Make_line()
+        print("1. 부트로더 언락 후 사용해주세요.")
+        print("2. 잘못된 파일을 플래싱 하지 않도록 주의해주세요.")
+        print("3. 벽돌 대비를 위해 순정 init_boot.img를 준비해주세요.")
+        print("4. 수행하는 명령어는 \"fastboot flash init_boot\" 입니다.")
+        Make_line()
+        print('\n')
+        input('모두 읽었다면 Enter를 눌러주세요...')
+
+        Clear_page()
+
+        Make_line()
+        print("새로 열린 창에서 파일 선택을 해주세요...")
+        Make_line()
         
-    elif number == '6' : #efstool 사용용 포트 개방
+        ##작업 수행 부
+        open_file_dialog() # init_boot 파일 선택
+
+        if file_path == '' :
+            continue
+        
+        os.system('adb devices')
+        os.system('adb reboot bootloader')
+
+        Clear_page()
+        Make_line()
+        print("장치관리자에서 드라이버 확인 후 엔터를 눌러주세요...")
+        Make_line()
+        input()
+
+        #플래싱 시작
+        os.system(f'fastboot flash init_boot "{file_path}"')
+        os.system('fastboot reboot')
+
+        Clear_page()
+            
+        Make_line()
+        print("플래싱 완료. 기기를 확인해주세요.")
+        Make_line()
+        print("\n")
+        
+    elif number == '7' : #efstool 사용용 포트 개방
         Clear_page()
         Make_line()
         print("##경고##")
@@ -238,7 +290,7 @@ while True:
         Make_line()
         print("\n")
 
-    elif number == '7' : #PDC / QPST 사용을 위한 포트 개방
+    elif number == '8' : #PDC / QPST 사용을 위한 포트 개방
         Clear_page()
         Make_line()
         print("##경고##")
@@ -266,7 +318,7 @@ while True:
         Make_line()
         print("\n")
 
-    elif number == '8' : #VOLTE 토글 활성화
+    elif number == '9' : #VOLTE 토글 활성화
         Clear_page()
         Make_line()
         print("##경고##")
@@ -293,14 +345,14 @@ while True:
         Make_line()
         print("\n")
 
-    elif number == '9' : #ADB / FASTBOOT 명령어 직접 입력
+    elif number == '10' : #ADB / FASTBOOT 명령어 직접 입력
         Clear_page()
         Make_line()
         input("ADB를 사용하려면 Enter를 눌러주세요....\n------------------------")
         os.system('cmd.exe')
         Clear_page()
 
-    elif number == '10': #reboot
+    elif number == '11': #reboot
         print("잠시만 기다려 주세요...")
         os.system('adb devices')
         os.system('adb reboot')
@@ -310,12 +362,12 @@ while True:
         Make_line()
         print("\n")
 
-    elif number == '11' : #기타 정보
+    elif number == '12' : #기타 정보
         Clear_page()
         Make_line()
         print("Made by RASBI")
         print("최종 업데이트: 2024-01-04\n")
-        print("V 1.1.0")
+        print("V 1.1.1")
         print("업데이트 내용: 재부팅 기능 및 boot.img 플래시 기능 추가\n")
         Make_line()
         print("VOLTE 강좌를 제공해 주신 소니 사용자 모임 카페의 앨리자님 및 회원분들께 감사의 말씀드립니다.")
@@ -323,7 +375,7 @@ while True:
         input("모두 읽었다면 Enter를 눌러주세요...\n--------------------")
         Clear_page()
         
-    elif number == '12': #종료
+    elif number == '13': #종료
         Clear_page()
         Make_line()
         input("Enter를 눌러주세요....\n--------------------")
