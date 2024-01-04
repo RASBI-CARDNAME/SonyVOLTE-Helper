@@ -11,9 +11,9 @@
 
 7. EFSTOOL 포트 개방 (setprop persist.usb.eng 1 명령어)
 8. PDC / QPST 포트 개방 (setprop sys.usb.config diag,serial_cdev, rmnet, adb 명령어)
-9. VOLTE 스위치 활성화 (아래 명령어)
-ㄴsetprop persist.dbg.ims_avail_ovr 1
-ㄴsetprop persist.dbg.volte_avail_ovr 1
+9. VOLTE 스위치 활성화 (아래 명령어)</br>
+ㄴsetprop persist.dbg.ims_avail_ovr 1</br>
+ㄴsetprop persist.dbg.volte_avail_ovr 1</br>
 ㄴsetprop persist.dbg.vt_avail_ovr 1
 
 10. ADB / FASTBOOT 명령어 직접 입력
