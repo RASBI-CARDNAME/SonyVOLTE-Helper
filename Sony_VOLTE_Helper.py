@@ -315,7 +315,7 @@ while True:
         Make_line()
         print("Made by RASBI")
         print("최종 업데이트: 2024-01-04\n")
-        print("V 1.0.3")
+        print("V 1.1.0")
         print("업데이트 내용: 재부팅 기능 및 boot.img 플래시 기능 추가\n")
         Make_line()
         print("VOLTE 강좌를 제공해 주신 소니 사용자 모임 카페의 앨리자님 및 회원분들께 감사의 말씀드립니다.")
